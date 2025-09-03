@@ -72,7 +72,7 @@ def SSE(list_Y_pred: list, list_Y: list): #compute the SSE (sum of the residuals
 
     return res
 
-def SST(list_Y: list): #compute the SST (total error) of our prediction
+def SST(list_Y: list): #compute the SST (total error) of the real relationship
     n = len(list_Y)
     res = 0
 
@@ -83,9 +83,13 @@ def SST(list_Y: list): #compute the SST (total error) of our prediction
 
     return res
 
+### PRINT THE ERRORS METRICS
+# We can now calculate the R squared value to see if the linear relationship found fits well the data
 print("SSE = ", SSE(Y_pred, Y))
 print("SST = ", SST(Y))
 
 R2 = 1 - SSE(Y_pred, Y)/SST(Y_pred)
 print("R2 = ", R2)
 
+# Author GCreus
+# Done via pyzo
