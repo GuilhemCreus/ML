@@ -56,6 +56,8 @@ b = list_mean(Y) - m * list_mean(X)
 Y_pred = [m * x + b for x in X]
 
 # We can then check that everything works as intended
+plt.close('all')
+plt.plot(X, Y, "ob", label = "Raw data")
 plt.plot(X, Y_pred, label = "Salary prediction")
 plt.legend(title = "Legend Title")
 plt.title("Prediction vs Reality")
