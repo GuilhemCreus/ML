@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 ### IMPORT THE DATA
 # First, let's import the dataframe and check that the data is cleaned
-df = pd.read_csv("/Users/guilhemcreus/Desktop/HousingPrices.csv")
+df = pd.read_csv("...your_path/HousingPrices.csv")
 
 df.head()
 
