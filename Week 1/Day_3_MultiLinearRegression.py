@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 """
 First, let's import the dataframe and check that the data is cleaned
 """
-df = pd.read_csv("/Users/guilhemcreus/Desktop/Github/WEEK 1/SalaryUSA.csv")
+df = pd.read_csv("...your_path/SalaryUSA.csv")
 
 df.head()
 
