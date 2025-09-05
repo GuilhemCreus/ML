@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 """
 First, let's import the dataframe and check that the data is cleaned
 """
-df = pd.read_csv("/Users/guilhemcreus/Desktop/Github/WEEK 1/IceCream.csv")
+df = pd.read_csv("...your_path/IceCream.csv")
 
 df.head()
 
