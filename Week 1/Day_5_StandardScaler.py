@@ -37,7 +37,8 @@ ax.set_zlabel('income')
 
 plt.show()
 """
-A relationship kinda exist
+A relationship kinda exist, and we see that there are outliers, but for this week we don't treat them for the moment
+We will handle data cleaning in the future !
 """
 
 ### SETTING UP THE STANDARD SCALER
