@@ -33,7 +33,8 @@ ax.set_zlabel('income')
 
 #plt.show()
 """
-A relationship kinda exist
+A relationship kinda exist, and we see that there are outliers, but for this week we don't treat them for the moment
+We will handle data cleaning in the future !
 """
 
 ### SETTING UP THE ERROR METRIC
@@ -74,7 +75,6 @@ def mse_value(parameters_set: list[float], independent_variables_list : list[lis
 
     return res
 
-###
 """
 Let's try to calculate the MSE for dummy parameters
 """
