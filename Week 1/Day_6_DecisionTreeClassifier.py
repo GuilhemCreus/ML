@@ -337,3 +337,7 @@ decision_tree2.fit(X_train, Y_train)
 print(decision_tree2.make_prediction(X_test[0], decision_tree2.root), " is the predicted value, and we should have obtained", Y_test[0])
 
 print(decision_tree2.make_prediction(X_test[1], decision_tree2.root), " is the predicted value, and we should have obtained", Y_test[1])
+
+
+# Author GCreus
+# Done via pyzo
