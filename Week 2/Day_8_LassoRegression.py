@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 """
 First, let's import the dataframe and check that the data is usable
 """
-df = pd.read_csv("/Users/guilhemcreus/Desktop/Github/WEEK 2/auto-mpg.csv")
+df = pd.read_csv("...your_path/auto-mpg.csv")
 
 df.head()
 
