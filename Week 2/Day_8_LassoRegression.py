@@ -2,7 +2,7 @@
 """
 We will try to model a multi-linear relationship from a github dataset using a lasso regression to find the right parameters
 
-Lasso regression looks like multi linear regression but we add a constraint linked to the sum of absolute value of the weights (bias excluded)
+Lasso regression looks like multi linear regression but we add a constraint linked to the sum of absolute value of the weights (b excluded)
 """
 
 import pandas as pd
@@ -16,8 +16,8 @@ df = pd.read_csv("...your_path/auto-mpg.csv")
 
 df.head()
 
-df_test = df.tail(2)
-df_train = df.iloc[:-2]
+df_test = df.tail(20)
+df_train = df.iloc[:-20]
 
 
 ### SETTING UP THE STANDARD SCALER
@@ -54,13 +54,13 @@ With (m1, m2,..., b) a set of parameters
 """
 
 """
-To measure the performance of a set, we will compute the mean squared error of the predicted Y values against the real Y values under the constraint : SUMabs(weight) <= t (bias excluded)
+To measure the performance of a set, we will compute the mean squared error of the predicted Y values against the real Y values under the constraint : SUMabs(weight) <= t (b excluded)
 Our final goal is to find the set of pramaeters that minimize the mean of squared errors with respect to the constraint
 
 It sounds like Lagrande ?
 Well, in fact we can use the Lagrange Format of this problem as follow :
 We seek to minimize : SUM((y_pred - y)**2) + lamba * SUM(abs(weight)
-(again, when computing lamba * SUM(abs(weight), we exclude bias)
+(again, when computing lamba * SUM(abs(weight), we exclude b)
 
 We first create a function that return the goal function for a given set of parameter and a given lambda
 """
@@ -197,7 +197,7 @@ And we compute the predicted values
 """
 Y_pred = []
 X_test_list = [X_test_scaled[:, i].tolist() for i in range(X_test.shape[1])]
-Y_test_list = Y_test.tolist()
+Y_test_list = Y_test.tolist()s
 
 res = []
 for i in range(X_test.shape[0]):
