@@ -99,7 +99,7 @@ It equals : P(T <= -abs(t)) + P(T >= abs(t)
 What does the formula above means ?
 It means that under the assumption that the null hypothesis is true, p equals the probability that we find a t value RANDOMLY more extreme than the one we got; hence T, the student random variable under the assumption that the null hypothesis is true (depends on the degree of freedom of our problem)
 
-So p value tells us what is the probability that we can find a t value more extreme than the one we got completely randomly under the null hypothesis assumption, so if the p-value is less than the chosen significance level (alpha), it suggests that such an extreme result would be very unlikely if the null hypothesis were true so we reject the null hypothesis
+So p value tells us what is the probability that we can randomly find a t (following a Student's distribution, i.e T) value more extreme than the one we got, still under the null hypothesis assumption, so if the p-value is less than the chosen significance level (alpha), it suggests that such an extreme result would be very unlikely if the null hypothesis were true so we reject the null hypothesis
 
 Here our distributions are symmetric so :
 p = 2 * P(T >= abs(t)
