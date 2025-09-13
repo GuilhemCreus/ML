@@ -46,8 +46,15 @@ group_C = df[df['Group'] == 'Drug C']['Blood Pressure Reduction']
 """
 We now want to setup the functions that will help us find F value
 
+Also we suppose :
+-The data in each group follow a normal distribution
+-Observations are independent
+
 Let's recall that for two or more data groups :
 F = Mean Square between groups (variance due to group differences) / Mean Square within groups (variance within groups, i.e. random/error variance)
+
+The F value we would obtain follows a Fisher distribution because it is the ratio of two indepedent chi squared divided by their respective degrees of freedom (chi squared normalized)
+And such a ratio follows a Fisher distribution
 
 With :
 -Mean Square between groups = Sum of Squares between groups / degree of freedom between groups
@@ -60,7 +67,7 @@ With :
 (squared deviation i the squared deviation within group i, so explicitly SS = SUM(SUM(xij - mean(xi)**2))
 -degree of freedom within groups = N - k (N the amount of observations overall and k the amount of groups); we substract k because there are k equations data points with means
 
-Here, the null hypothesis assumes no significant differences between variability of groups (Drug A, Drug B & Drug C
+Here, the null hypothesis assumes no significant differences between means of groups (Drug A, Drug B & Drug C)
 """
 meanA = group_A.mean()
 meanB = group_B.mean()
