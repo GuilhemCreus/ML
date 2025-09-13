@@ -15,6 +15,9 @@ The t-test compares the means of two groups (or, again, the mean of a group and 
 
 There are a few types of t-tests, but the most common one is:
 Independent t-test: Compares two independent groups
+-To do so, the data in each group should approximately follow a normal distribution
+-Observations must be independent
+-The two populations studied are assumed to have the same variance
 
 Here's how the process works:
 
@@ -53,6 +56,12 @@ We now want to setup the functions that will help us find t value and pooled sta
 
 Let's recall that for two data groups :
 t = (mean1 - mean2) / (sp * (1/n1 + 1/n2)**(1/2))
+
+T follows a Student's distribution because
+-If both samples are approximately normally distributed, then mean1 - mean2 is normally distributed
+-And sp**2 follows a chi squared distribution distribution because it stems from the sum of two independent sum of squared of normals
+Finally, we have a result that stems from : normal/sqrt(chi squared / df) (or normal/sqrt(normalized chi squared) which follows a Student's distribution
+
 
 with sp the pooled standard deviation of two data groups :
 sp = sqrt( [(n1 - 1) * s1**2 + (n2 - 1) * s2**2] / degree of freedom )
@@ -113,10 +122,15 @@ print(f"If the null hypothesis were true, then the chance of observing a test st
 alpha = 0.05
 
 if p_value < alpha:
-    print("Reject the null hypothesis. The difference is statistically significant.")
+    print("Reject the null hypothesis, the difference is statistically significant.")
 else:
-    print("Fail to reject the null hypothesis. The difference could be due to chance.")
+    print("Fail to reject the null hypothesis, the difference could be due to chance.")
 
+"""
+Other main usage of t test are :
+-paired t test where we gather different measures of data of similar units (i.e the object we observe) or group of units across changes like prior and after an intervention
+-t test for a single sample where we compare the significance of the mean of the sample with a reference
+"""
 
 # Author GCreus
 # Done via pyzo
