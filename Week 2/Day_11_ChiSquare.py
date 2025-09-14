@@ -20,6 +20,7 @@ The assumptions here are :
 -The data must come from a well defined population
 -Each observation must appear only once in one cell of the table without overlap (independence of observations)
 -Observations are counts of observations (no percentage...)
+-Homogeneity of variance
 
 Here's how the process works :
 
