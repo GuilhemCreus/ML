@@ -3,6 +3,8 @@
 Now that we have seen the basics of statistical tests, we move on the basics of probability starting with the basic concepts and thereafter we will see conditional probability (discrete and continuous)
 """
 
+import numpy as np
+import matplotlib.pyplot as plt
 
 ### MAIN CONCEPTS IN PROBABILITY
 """
@@ -78,3 +80,84 @@ With :
 -P(X = x) = 0 for all points, this is due to the fact that for continuous random variables probabilities are calculated over intervals, not points
 """
 
+### CONTINUOUS CONDITIONAL PROBABILITY
+"""
+Just as in the discrete case, a probability space is defined by three components :
+Ω : the set of all possible outcomes of a random process
+F : a σ-algebra/event space
+With (Ω, F) a measurable space
+P : a probability function
+
+Let X and Y be continuous random variables defined on the same probability space
+The joint cumulative distribution function (CDF) is defined as F:X,Y with :
+F:X,Y (x, y) = P(X <= x, Y <= y)
+
+X and Y are also associated with a joint probability density function f:X,Y (x, y) that stems from the CDF : f:X,Y (x, y) = ∂∂F:X,Y (x, y) / (∂x∂y)
+
+Simply remind that this function gives the density of probability that X and Y take values near (x, y)
+
+To get the marginal density of X, integrate the joint PDF over all possible values of Y : f:X(x) = ​∫(all possible values of Y) f:X,Y(x, y)dy likewise for f:Y
+
+We finally arrive at the conditional probability density function :
+Let f:X,Y(x, y) be the joint PDF of X, Y two random continuous variables and suppose f:Y(y) > 0
+Then, the conditional density of X given Y = y is defined as :
+f:X|Y(x|y) = f:X,Y(x, y)/f:Y(y)
+
+Now let's work this with a practical example
+
+
+
+Let (X,Y) be a random point uniformly distributed in the triangle defined by:
+0 <= x <= 1 and 0 <= y <= x
+
+This region is a right triangle under the line y = x, and the joint PDF is uniform over that triangle
+Let’s compute the conditional density of Y given X = x
+Since the distribution is uniform over the triangle, the joint PDF f:X,Y(x, y) is constant inside the triangle and 0 elsewhere, we first try to find the constant C
+​∫​∫(all possible values) f:X,Y(x, y)dxdy = ​∫​∫(triangle area) f:X,Y(x, y)dxdy = C * triangle area = 1
+
+And, triangle area is L * l / 2 = 1/2, so C = 2
+So : f:X,Y(x, y) = 2 if 0 <= y <= x <= 1 and 0 otherwise
+
+Now we only need f:X(x) to be able to fully calculate f:Y|X(y, x) for any x
+f:X(x) = ​∫(all possible values of Y) f:X,Y(x, y)dxdy
+f:X(x) = ​∫(y = 0 -> x) f:X,Y(x, y)dy = ​∫(y = 0 -> x) 2dy = 2x
+
+So f:X(x) = 2x if 0 <= x <= 1 and 0 otherwise
+
+Finally,
+f:Y|X(y, x) = f:X,Y(x, y)/f:X(x) = 2 / 2x = 1 / x for 0 <= y <= x and 0 otherwise
+"""
+### PYTHON PLOT
+# Generate uniform points inside the triangle
+N = 2000000
+x_vals = np.random.uniform(0, 1, N)
+y_vals = np.random.uniform(0, 1, N)
+
+# We will keep only the points below the line y <= x
+mask = y_vals <= x_vals
+x_tri = x_vals[mask]
+y_tri = y_vals[mask]
+
+# We fix here x close to a value <= 1 with some tolerance around and plot the conditional distribution of y
+x_fixed = 0.5
+tolerance = 0.02
+
+# We select only the points around the fixed x
+y_cond = y_tri[np.abs(x_tri - x_fixed) <= tolerance]
+
+plt.close('all')
+# bins : number of bars in the interval, alpha : transparency of the bars
+plt.hist(y_cond, bins=100, density=True, alpha=0.7, color='blue', edgecolor='black')
+plt.title(f"Conditional distribution of Y given X around {x_fixed}")
+plt.xlabel("Y")
+plt.ylabel("Density")
+plt.show()
+
+"""
+So we get kind of a flat surface with a density of 1/x approximately but with a higher number of data, we should get a flat plot
+
+We worked on continuous conditional probability because they are useful when computing the expected value which is itsel useful when computing reward in reinforcement learning
+"""
+
+# Author GCreus
+# Done via pyzo
