@@ -149,8 +149,8 @@ for group in groups:
     group_mean = group_data.mean().values.reshape(-1, 1)
 
     #Error matrix E
-    centered = group_data.values - group_mean.T  # (n_i, p)
-    E += centered.T @ centered
+    centered = group_data.values - group_mean.T  #apply the difference to all set of value in group_data.values
+    E += centered.T @ centered #it does the matrix product
 
     #Hypothesis matrix H
     mean_diff = group_mean - grand_mean
@@ -179,6 +179,7 @@ df2 = N − 0.5 *​ (p + g + 1)
 
 The two df represent the df for the numerator and the denominator of the following formula :
 F = [1 - wilks_lambda**(1/s)] / wilks_lambda**(1/s) * df2 / df1
+I don't understand yet how the conversion works but I will work on it later
 
 Where s = sqrt(p**2 * (g - 1)**2 - 4 / (p**2 + (g - 1)**2 - 5)) is the scaling factor used to normalize the test statistic based on the number of dependent variables and groups
 It adjusts the shape of the distribution so we can better approximate the F-distribution from Wilks’ lambda but I really don't understand where it comes from : (
