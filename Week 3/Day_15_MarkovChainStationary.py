@@ -8,7 +8,10 @@ import numpy as np
 import random
 
 ### EQUATION SYSTEM
-
+"""
+Let's supose that the two values in the vector v are : [s, r]
+Finding s and r such that v = P * v is the same as resolving the following system for 
+"""
 import numpy as np
 
 P = np.array([
