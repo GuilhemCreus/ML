@@ -14,7 +14,7 @@ Finding s and r such that v = P * v is the same as resolving the following syste
 for P = np.array([
     [0.7, 0.3],
     [0.5, 0.5]])
-    
+
 We have P * v =([
     [0.7 * s + 0.3 * r],
     [0.5 * s + 0.5 * r]])
@@ -32,8 +32,8 @@ P = np.array([
     [0.5, 0.5]
 ])
 
-# Transpose to have the following equation  P.T v = v
-A = P.T - np.eye(2)
+# We have the following equation : v = P * v so 0 = (P - I) * v
+A = P - np.eye(2)
 # We add the constraint that the sum of values of v must add up to 1
 A = np.vstack([A, np.ones(2)])
 
@@ -43,3 +43,11 @@ b = np.array([0, 0, 1])
 # We resolve using linalg which is a solver for systems of equations
 stationary = np.linalg.lstsq(A, b, rcond=None)[0]
 print("Stationary distribution:", stationary)
+
+"""
+We can check that P @ stationary = stationary
+Stationary distributions are useful to understand behaviour of agent ofter long exposure
+"""
+
+# Author GCreus
+# Done via pyzo
