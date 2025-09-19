@@ -5,6 +5,7 @@ Yesterday, we have introduced the basics of MDP and today, we are going to work 
 
 import numpy as np
 import random
+import matplotlib.pyplot as plt
 
 ### AN AGENT TRYING TO FIND ITS WAY OUT OF A GRID
 """
@@ -51,8 +52,21 @@ action_effect = {
 Q = {state: {action: 0.0 for action in actions} for state in states}
 
 alpha = 0.1      # learning rate
-gamma = 0.99     # discount factor which reflects how much the agent takes into account possible future rewards
-epsilon = 0.1    # exploration probability, i.e this is incertainty about action chosen by the agent, this isn't the same as incertainty of the environment defined above within transition_probs which reflects possible natural accidents
+gamma = 0.99     # discount factor which reflects how much the agent takes into account possible future rewards, with 0.99 here, our agent is really concerned about the future
+epsilon = 0.1    # exploration probability, i.e this is uncertainty about action chosen by the agent, this isn't the same as uncertainty of the environment defined above within transition_probs which reflects possible natural accidents
+
+"""
+With all these values in mind, let's explain how Q-table is calculated for each state and each action :
+Q(s, a) <- Q(s, a) + alpha * [immediate_reward + gamma * max​Q(s', a') - Q(s, a)]
+
+With max​Q(s', a') the maximum expected reward for state s' which depends on the action a' taken
+So max​Q(s', a') is the expected reward for state s' if the agent choose the best action a' at the state s'
+
+So, for each step, Q(s, a) will be updated according to its current value and the difference between (immediate reward + expected reward at next state if the agents choose the best action at the next state) and the current expected reward Q(s, a)
+
+Let's reformulate that again, so the fact that an action a at a state s will move the agent to a state where he will be closer to reward will be able to improve the potential reward at the state s for that action a
+Think of it like : the reward state will spread its potential reward to its neighbor states that can reach it with actions, which will themselves spread to theirs neighbor states...
+"""
 
 def choose_action(state): # last time the action chosen was completely random
     """
@@ -89,8 +103,8 @@ def step(state, action):
     if new_state not in states:
         new_state = state  # The agent will bounce back to its current position
 
-    # Reward could follow a normal distribution ounce the agent has reached the way out in order to simulate the incertainty of the environment even when everything has been done correctly
-    # Here we will simply chose a determinist reward of 1
+    # Reward could follow a normal distribution once the agent has reached the way out in order to simulate the uncertainty of the environment even when everything has been done correctly
+    # Here we will simply choose a determinist reward of 1
     reward = 1 if new_state == (3, 3) else 0
 
     return new_state, reward
@@ -114,9 +128,14 @@ def q_learning_episode(start_state, max_steps=100):
         # With reality : immediate reward + future reward
         # Prediction : current value of Q(s, a)
         best_next_action = max(Q[next_state], key=Q[next_state].get)
-        # best_next_action simply select the best possible action for
+        # best_next_action simply select action with the highest score in the Q-table at the next state
+
         reality = reward_temp + gamma * Q[next_state][best_next_action]
+        # reality computes the immediate reward carried by the agent and the expected reward he can achieve by going in the next state chosen and by chosing the best_next_action, discounted by gamma
+
         reality_less_prediction = reality - Q[state][action]
+        # reality_less_prediction is simply the difference between what the agent expect to obtain regarding what reward he can carry if he follows best_NEXT_action in its NEXT state and the actual predicted reward he expect to carry if he stay in its CURRENT state with its CURRENT action
+
         Q[state][action] += alpha * reality_less_prediction
 
         state = next_state
@@ -127,15 +146,38 @@ def q_learning_episode(start_state, max_steps=100):
 
     return reward
 
+episodes = np.linspace(1000, 20000, 20, dtype=int) # episode, not epoch
+mean_reward = []
 
-    print(f"Total reward: {total_reward:.2f}")
+"""
+Now, let's see how  our program is able to learn regarding the maximum amount of simulation (i.e the number of episode) he can do to improve its Q-table
+We will measure the ability of the agent to learn by looking at the mean amount of reward per episode
+We will plot this measure for different maximum number of episode allowed
+"""
+for i in range(len(episodes)):
+    Q = {state: {action: 0.0 for action in actions} for state in states}
+    all_rewards = 0
+    for ep in range(episodes[i]):
+        reward = q_learning_episode(start_state=(0, 0))
+        all_rewards += reward
+    mean_reward.append(all_rewards/episodes[i])
 
-episodes = 20000 # episode, not epoch
-all_rewards = []
+plt.close('all')
+fig = plt.figure()
+ax = fig.add_subplot()
 
-for ep in range(episodes):
-    reward = q_learning_episode(start_state=(0, 0))
-    all_rewards.append(reward)
+ax.scatter(episodes, mean_reward, marker='o')
+ax.set_xlabel('Amount of episodes')
+ax.set_ylabel('Mean reward per episode')
 
-print(f"Mean reward for {episodes} episodes: {np.mean(all_rewards):.2f}")
+plt.show()
 
+"""
+We clearly see that our program is able to learn now compared to yesterday where the choice of action was completely random
+
+Tomorrow we will see the rest of the basics of RL which is policy
+Pretty simple because it derives from Q-table and we have just seen Q-table so easy job
+"""
+
+# Author GCreus
+# Done via pyzo
