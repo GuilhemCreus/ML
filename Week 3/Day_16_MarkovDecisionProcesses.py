@@ -20,15 +20,15 @@ import random
 """
 For the moment, we will focus on the basic components of a Reinforcement Learning problem:
 
-1. The agent :
+1) The agent :
     -is the entity that takes actions in the environment
     -in our case, the agent is trying to find a way out of the 4x4 grid
 
-2. The reward :
+2) The reward :
     -is the signal given to the agent to indicate how well it is doing.
     -the agent receives a reward of 1 only when it reaches the goal state
 
-3. The policy (most important part) :
+3) The policy (most important part) :
     -is the strategy the agent uses to choose actions based on the current state
     -for now, we use a completely random policy, i.e the agent picks an action randomly, without learning
     -more advanced RL algorithms will improve this policy over time based on past experiences and rewards
