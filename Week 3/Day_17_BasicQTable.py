@@ -1,4 +1,4 @@
-### Day 15 -- Markov Decision Process
+### Day 17 -- Basic Q-table and Policy
 """
 Yesterday, we have introduced the basics of MDP and today, we are going to work on the same example as yesterday but, this time we are going to explore how the agent will learn within the environment
 """
