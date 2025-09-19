@@ -1,4 +1,4 @@
-### Day 15 -- Markov Decision Process
+### Day 16 -- Markov Decision Process
 """
 So far, our Markov Chain model considered that the transition between states only depends on the current state.
 However, in many decision-making problems the transition also depend on the action taken at a state
