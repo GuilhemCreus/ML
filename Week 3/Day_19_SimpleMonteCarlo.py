@@ -18,7 +18,7 @@ We then check whether each point falls inside the unit circle with radius = 1 an
 To do so, we calculate the distance of the point from the origin using distance : distance = sqrt(x^2 + y^2)
 
 The probability that a random point falls inside the circle is equal to the ratio of the areas: (area of circle) / (area of square) = π / 4
-And, we estimate the area of circle by counting the points within the circle divided by the overall number of points which represents the area of the square
+And, we estimate the area of circle by counting the points within the circle divided by the overall number of points (which represents the area of the square)
 
 Therefore, if we generate a large number of random points and count how many fall inside the circle,
 we can estimate pi using the formula:
@@ -49,7 +49,6 @@ def monte_carlo_pi(n_points: int) -> float:
             x_out.append(x)
             y_out.append(y)
 
-    # Because the number of points inside the circle
     pi_estimate = 4 * inside_circle / n_points
 
     plt.scatter(x_in, y_in, color='blue', s=0.5, label='Inside circle')
