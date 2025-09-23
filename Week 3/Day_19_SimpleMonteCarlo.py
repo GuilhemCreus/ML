@@ -1,4 +1,4 @@
-### Day 19 -- Basic Policy Implementation
+### Day 19 -- Simple Monte Carlo Simulation
 """
 In the previous example, we updated the Q-table values under the temporal difference method which updates the Q-table values at each step using the expected future gains without waiting for the end of the episode
 
