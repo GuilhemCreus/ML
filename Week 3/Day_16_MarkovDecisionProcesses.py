@@ -26,7 +26,7 @@ For the moment, we will focus on the basic components of a Reinforcement Learnin
 
 2) The reward :
     -is the signal given to the agent to indicate how well it is doing.
-    -the agent receives a reward of 1 only when it reaches the goal state
+    -the agent receives a random reward (in our case the reward is 1 only because for a simple example I don't think it is useful to have random rewards)
 
 3) The policy (most important part) :
     -is the strategy the agent uses to choose actions based on the current state
@@ -145,9 +145,7 @@ P(s_{t+1} | s_t, a_t, s_{t-1}, a_{t-1}, ..., s_0, a_0) = P(s_{t+1} | s_t, a_t)
 
 This is called the Markov property
 
-In our case:
--at each time step, the agent chooses an action based only on the current state.
--the environment responds with a new state and a reward, according to P(s' | s, a) and R(s, a, s').
+Moreover the environment responds with a new state and a random reward (not in our case), according to P(s' | s, a) and R(s, a, s')
 
 This clearly matches the definition of a Markov Decision Process
 """
