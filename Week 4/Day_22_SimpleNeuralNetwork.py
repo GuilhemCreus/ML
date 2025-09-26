@@ -1,4 +1,4 @@
-### Day 21 -- Neural network
+### Day 22 -- Neural network without backpropagation
 """
 We will now put multiple layers of neurons together in order to create a neural network
 A neural network is made of multiple layers of single neurons connected to each other
