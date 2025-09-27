@@ -23,7 +23,7 @@ class Neuron:
 
 ### CLASS NEURAL NETWORK
 """
-Math explanation incoming
+Math explanation is well explained here : https://www.youtube.com/watch?v=tIeHLnjs5U8
 """
 
 class NeuralNetwork:
