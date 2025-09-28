@@ -9,6 +9,7 @@ import torch.nn as nn
 
 ### SIMPLE PYTORCH NETWORK
 """
+We will create in this block the class ORNet that is simply a class containing layers of neurons that will be trained to fit OR logical rule
 Our network will inherit from the class nn.Module that provides all the base functionality for building neural networks such as parameter management, forward computation and integration with autograd
 """
 class ORNet(nn.Module):
@@ -27,6 +28,8 @@ class ORNet(nn.Module):
 
 ### BACKPROPAGATION
 """
+In this block, we will simply loop and change manually each parameters with respect to the gradient descent method
+
 A quick overview of hooks and autograd :
 -hooks are special functions that you can attach to modules or tensors to automatically intervene at key points in the flow of data through a neural network; like printing a tensor during a forward or extract a tensor during a backward
 -autograd is a dynamic graph that PyTorch builds on the fly as operations are executed; each tensor operation is tracked as a node in this graph and the graph is used during backpropagation to automatically compute gradients with respect to each parameter
