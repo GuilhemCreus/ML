@@ -139,7 +139,6 @@ Below are some of the most commonly used activation functions in PyTorch :
 # input values to visualize activations
 x_vals = torch.linspace(-10, 10, 100)
 
-###
 # apply activation functions
 activations = {
     "ReLU": F.relu(x_vals),
