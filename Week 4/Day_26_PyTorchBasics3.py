@@ -219,7 +219,7 @@ So grad(x2) > grad(x1), this is why in our plot the learning rate of x2 is lower
 """
 
 """
-We will see the other two tomorrow
+We will see RMSprop & Adam tomorrow
 """
 
 # Author GCreus
