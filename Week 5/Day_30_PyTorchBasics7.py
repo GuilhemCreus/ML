@@ -125,6 +125,10 @@ Key takeaways:
 - ReLU is fragile with negative inputs, especially when the task involves values < 0
 - LeakyReLU and ELU offer better trade-offs, often yielding more stable and expressive models
 - The choice of activation should be guided by the data range, symmetry, and the type of non-linearity needed
+
+!!!!!!!!!!!
+SATURATION NEXT DAY AND IMPROVE EXPLANATION ON VANISHING GRADIENT
+!!!!!!!!!!!
 """
 
 # Author GCreus
