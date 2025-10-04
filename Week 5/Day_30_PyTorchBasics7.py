@@ -65,7 +65,7 @@ def train_model(model, epochs=1000, lr=0.01):
 
 ### TESTING
 # manual seed so you can have the same results as mine
-torch.manual_seed(10)
+torch.manual_seed(0)
 results = {}
 epochs = 1000
 lr = 0.01
