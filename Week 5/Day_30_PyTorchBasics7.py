@@ -10,7 +10,6 @@ by training a simple neural network to approximate the function y = -exp(x) + si
 This allows us to observe:
 - saturation (Sigmoid, Tanh)
 - dying neurons (ReLU)
-- gradient flow efficiency (vanishing and exploding)
 """
 
 import torch
@@ -104,6 +103,22 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 """
+The above script should print the loss graph through epochs with the final prediction by activation functions
+
+This experiment is also a great way to illustrate two important issues in neural networks:
+**saturation** and **dead neurons**.
+
+-Saturation occurs when the input to an activation function falls into a region where its derivative is near zero, this happens with functions like sigmoid and Tanh for large positive or negative values
+In such cases, the gradient during backpropagation becomes very small (not zero unline dead neurons), leading to very slow learning, we clearly see this phenomena here because the network struggles to adjust the weights
+
+-Dead neurons are neurons that always output zero and stop learning entirely, this typically happens with ReLU where negative inputs are clipped to zero
+If a neuron's weights push it into the negative input range permanently, its output stays at zero, and since ReLU’s gradient is also zero there, no gradient flows back, effectively making the neuron "dead" because the weights will not be updated
+
+These phenomena are directly visible in the training results:
+-sigmoid shows high loss and flat predictions due to saturation
+-ReLU gets stuck with poor predictions and high loss, likely due to dead neurons
+-tanh performs better but still suffers mild saturation at input extremes
+
 Conclusion: How activation functions impact learning
 
 With the complex function y = exp(-x) * sin(5x), we observe the following:
@@ -125,10 +140,6 @@ Key takeaways:
 - ReLU is fragile with negative inputs, especially when the task involves values < 0
 - LeakyReLU and ELU offer better trade-offs, often yielding more stable and expressive models
 - The choice of activation should be guided by the data range, symmetry, and the type of non-linearity needed
-
-!!!!!!!!!!!
-SATURATION NEXT DAY AND IMPROVE EXPLANATION ON VANISHING GRADIENT
-!!!!!!!!!!!
 """
 
 # Author GCreus
