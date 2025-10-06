@@ -105,8 +105,7 @@ plt.show()
 """
 The above script should print the loss graph through epochs with the final prediction by activation functions
 
-This experiment is also a great way to illustrate two important issues in neural networks:
-**saturation** and **dead neurons**.
+This experiment is also a great way to illustrate two important issues in neural networks: saturation and dead neurons
 
 -Saturation occurs when the input to an activation function falls into a region where its derivative is near zero, this happens with functions like sigmoid and Tanh for large positive or negative values
 In such cases, the gradient during backpropagation becomes very small (not zero unline dead neurons), leading to very slow learning, we clearly see this phenomena here because the network struggles to adjust the weights
