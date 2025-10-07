@@ -11,8 +11,8 @@ Now inputs are standardized using the formula:
 
 Scaling the inputs ensures that all features are centered around 0 with a unit variance, it helps because it :
 -keeps activations within a reasonable range
--prevents exploding or vanishing gradients
--reduces the risk of "dying ReLU" neurons (neurons stuck forever at 0 output)
+-prevents exploding or vanishing gradients due to unequal features (for example one feature of 1 and one of 1e8, the dominant feature will lead the way because its associated gradients will be higher)
+-in some cases it reduces the risk of "dying ReLU" neurons (neurons stuck forever at 0 output) by gathering data near zero
 
 Although our target values are not scaled here, scaling the inputs is often enough to stabilize training when using ReLU activations
 
@@ -20,8 +20,8 @@ Although our target values are not scaled here, scaling the inputs is often enou
 
 We also explicitly switch the model between two modes:
 
-  model.train() → sets the network to "training mode"
-  model.eval()  → sets it to "evaluation (inference) mode"
+  model.train() -> sets the network to "training mode"
+  model.eval()  -> sets it to "evaluation (inference) mode"
 
 These modes control the behavior of specific layers such as Dropout or Batch Normalization:
 -in train mode: Dropout is active, and BatchNorm updates its statistics
@@ -33,6 +33,7 @@ Dropout:
 
 Batch normalization :
 -normalizes activations of each layer during training so that they have mean like 0 and std like 1 for each batch
+-this is exactly like scaling the input of the network but now we scale the intermediate outputs between each layer
 -this keeps the network stable
 """
 
